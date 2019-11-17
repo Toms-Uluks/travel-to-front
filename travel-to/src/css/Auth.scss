@@ -1,0 +1,13 @@
+.form-wrap {
+    display: flex;
+    flex: 1 1 100%;
+    width: 100%;
+
+    .form {
+        display: flex;
+        flex: 1 1 50%;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
