@@ -20,3 +20,23 @@
 .App-link {
   color: #09d3ac;
 }
+
+.headline {
+  font-family: Crimson Text;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 49px;
+  text-align: center;
+  color: #AAC2F2;
+}
+
+.sub-headline {
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  color: #FFFFFF;
+}
