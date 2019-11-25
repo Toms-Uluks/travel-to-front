@@ -23,7 +23,7 @@ function App() {
         <BrowserRouter>
           <Switch>
             <Route path='/login' component={AuthPage} exact/>
-            <Route path='/' component={Home} exact/>
+            <PrivateRoute path='/' component={Home} exact/>
             <Route path='/activate_user/:userToken' component={ActivateUser}/>
           </Switch>
         </BrowserRouter>
