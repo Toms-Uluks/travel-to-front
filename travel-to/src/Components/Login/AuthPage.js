@@ -23,7 +23,7 @@ class AuthPage extends Component {
                     {this.state.activeForm == 'login' ? 
                     <div>
                         <Login></Login> 
-                        <p>Not a user? <div onClick={() => this.changeFormState('register')}>Register</div></p>
+                        <div className="secondary-btn" onClick={() => this.changeFormState('register')}>Register</div>
                     </div>
                     : null}
                 </div>
@@ -31,7 +31,7 @@ class AuthPage extends Component {
                     {this.state.activeForm == 'register' ? 
                     <div>
                         <Register></Register> 
-                        <p>Already a user? <div onClick={() => this.changeFormState('login')}>Login</div></p>
+                        <div className="secondary-btn" onClick={() => this.changeFormState('login')}>Login</div>
                     </div>
                     : null}
                 </div>

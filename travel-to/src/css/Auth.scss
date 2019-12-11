@@ -3,7 +3,7 @@
     flex: 1 1 100%;
     width: 100%;
     height: -webkit-fill-available;
-    background: #AAC2F2;
+    background: #ffffff;
 
     .form {
         display: flex;
@@ -14,25 +14,33 @@
     }
 
     .active-form {
-        background-color: #2A4B8C;
+        background-color: #B0C90B;
         color: #ffffff
     }
 
     form {
         margin: 40px auto;
+        margin-bottom: 20px;
         max-width: 335px;
     }
 
     button {
         width: 60%;
-        background: #AAC2F2;
+        background: #062601;
         border-radius: 4px;
-        border-color: transparent
+        border-color: transparent;
+        margin-top: 40px;
     }
 
     input {
         width: 90%;
     }
+
+    .secondary-btn {
+        color: #062601;
+        cursor: pointer;
+    }
+
     .form-group {
         justify-content: center;
         display: flex
