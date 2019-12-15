@@ -19,15 +19,15 @@ class AuthPage extends Component {
     render() { 
         return (  
             <div className="form-wrap">
-                <div className="form">
+                <div className={this.state.activeForm == 'login' ? "active-form form" : "form"}>
                     {this.state.activeForm == 'login' ? 
-                    <div className="">
+                    <div>
                         <Login></Login> 
                         <p>Not a user? <div onClick={() => this.changeFormState('register')}>Register</div></p>
                     </div>
                     : null}
                 </div>
-                <div className="form">
+                <div className={this.state.activeForm == 'register' ? "active-form form" : "form"}>
                     {this.state.activeForm == 'register' ? 
                     <div>
                         <Register></Register> 

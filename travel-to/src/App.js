@@ -19,10 +19,11 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 function App() {
   return (
     <div className="App">
+        <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans&display=swap" rel="stylesheet"></link>
         <BrowserRouter>
           <Switch>
             <Route path='/login' component={AuthPage} exact/>
-            <Route path='/' component={Home} exact/>
+            <PrivateRoute path='/' component={Home} exact/>
             <Route path='/activate_user/:userToken' component={ActivateUser}/>
           </Switch>
         </BrowserRouter>

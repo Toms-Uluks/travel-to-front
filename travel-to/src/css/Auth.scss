@@ -2,6 +2,8 @@
     display: flex;
     flex: 1 1 100%;
     width: 100%;
+    height: -webkit-fill-available;
+    background: #AAC2F2;
 
     .form {
         display: flex;
@@ -9,5 +11,30 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+    }
+
+    .active-form {
+        background-color: #2A4B8C;
+        color: #ffffff
+    }
+
+    form {
+        margin: 40px auto;
+        max-width: 335px;
+    }
+
+    button {
+        width: 60%;
+        background: #AAC2F2;
+        border-radius: 4px;
+        border-color: transparent
+    }
+
+    input {
+        width: 90%;
+    }
+    .form-group {
+        justify-content: center;
+        display: flex
     }
 }
