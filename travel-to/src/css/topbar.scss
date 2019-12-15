@@ -25,3 +25,21 @@
         text-decoration: none;
     }
 }
+
+.links-wrap {
+    a {
+        margin: 0 15px;
+        font-family: Work Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 21px;
+        text-align: center;
+        color: #062601;
+
+        &:hover, .is-active {
+            color: #B0C90B;
+            text-decoration: none
+        }
+    }
+}

@@ -10,14 +10,12 @@ const initialState = {
   }
 };
 
-function travelTo(state = initialState, action) {
+const user = (state = initialState, action) => {
   switch (action.type) {
-    case "Get user": {
-      return {
-        user: action.user
-      }
+    case "GET_USER": {
+      return state.user
     }
-    case "Set user": {
+    case "SET_USER": {
       return {
         user: action.user
       }
@@ -27,4 +25,4 @@ function travelTo(state = initialState, action) {
   }
 }
 
-export default travelTo
+export default user

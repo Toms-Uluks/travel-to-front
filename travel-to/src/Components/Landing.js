@@ -9,7 +9,12 @@ import '../css/Landing.scss';
 import Axios from 'axios';
 import {Redirect} from 'react-router-dom';
 import { Topbar } from './Common/Topbar';
+import { connect } from 'react-redux';
+import { DateTime } from 'luxon';
 
+const mapStateToProps = (state, ownProps) => {
+    return state.user
+}
 class Landing extends Component {
     constructor(props) {
         super(props);
@@ -30,12 +35,18 @@ class Landing extends Component {
         const handleSubmit = event => {
             event.preventDefault();
             const form = event.currentTarget;
-            this.setState({redirectStr: form.formGroupFrom.value+'-'+form.formGroupTo.value+'-'+this.state.date})
+            if(!form.formGroupFrom.value && form.formGroupTo.value && !this.state.date) {
+                this.setState({redirectStr: '/trips/'})
+            } else {
+                var formatedDate = DateTime.fromMillis(Number(this.state.date))
+                var tripDate = this.state.date ? formatedDate.year+'-'+formatedDate.month+'-'+formatedDate.day : '';
+                this.setState({redirectStr: '/trips/'+ form.formGroupFrom.value+'_'+form.formGroupTo.value+'_'+tripDate})
+            }
         };
         return (  
             <div className="background" style={{backgroundImage: 'url(' + background + ')'}}>
-                <Topbar user={this.state.user}></Topbar>
-                {this.state.redirectStr ?  <Redirect to={'/trips/'+ this.state.redirectStr} /> : null} 
+                <Topbar user={this.props.user}></Topbar>
+                {this.state.redirectStr ?  <Redirect to={this.state.redirectStr} /> : null} 
                 <div className="menu-section">
                     <Form onSubmit={handleSubmit}>
                         <div className="input-wrap">
@@ -77,4 +88,4 @@ class Landing extends Component {
     }
 }
  
-export default Landing;
+export default connect(mapStateToProps)(Landing);
