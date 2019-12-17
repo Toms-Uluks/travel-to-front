@@ -4,6 +4,16 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import {Redirect} from 'react-router-dom';
+import { connect } from 'react-redux'
+import {setUser} from '../../modules/actions';
+
+const mapDispatchToProps = dispatch => {
+    return {
+        dispatchUser: user => {
+            dispatch(setUser(user))
+        }
+    }   
+}
 
 class Login extends Component {
     constructor(props) {
@@ -32,7 +42,15 @@ class Login extends Component {
                     Cookies.set("userToken", res.data.data.token, { expires: 1 });
                     this.setState({
                         logn: this.state.loggedin = true
-                    });
+                    })
+                    var config = {
+                        headers: {'Authorization': "Bearer " + Cookies.get('userToken')}
+                    };
+                    axios.get("https://travel-to-api.herokuapp.com/api/user", config).then(res => {
+                        if(res.data.status === 'success') {
+                            this.props.dispatchUser(res.data.data)
+                        }
+                    })                    
                 } 
             })
         };
@@ -57,4 +75,4 @@ class Login extends Component {
     }
 }
  
-export default Login;
+export default connect(null,mapDispatchToProps)(Login);
