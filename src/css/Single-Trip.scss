@@ -1,0 +1,40 @@
+.single-trip-wrap {
+    display: flex;
+
+
+    .map-wrap {
+        min-width: 600px;
+        margin: 50px;
+        width: 600px;
+        background: green;
+        height: 540px;
+        position: relative;
+    }
+
+    .trip-info-wrap {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 70px 50px;
+
+        div {
+            margin: 20px 0;
+        }
+        span {
+            margin: 5px 0;
+        }
+    }
+
+    .contact-button {
+        margin-top: 50px;
+        background-color: #062601;
+        border: none;
+        width: fit-content;
+        &:hover, &:focus {
+            background-color: #4F7302 !important;
+        }
+        &:active {
+            background-color: #062601 !important;
+        }
+    }
+}

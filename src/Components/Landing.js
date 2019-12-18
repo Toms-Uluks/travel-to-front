@@ -35,7 +35,7 @@ class Landing extends Component {
         const handleSubmit = event => {
             event.preventDefault();
             const form = event.currentTarget;
-            if(!form.formGroupFrom.value && form.formGroupTo.value && !this.state.date) {
+            if(!form.formGroupFrom.value && !form.formGroupTo.value && !this.state.date) {
                 this.setState({redirectStr: '/trips/'})
             } else {
                 var formatedDate = DateTime.fromMillis(Number(this.state.date))
