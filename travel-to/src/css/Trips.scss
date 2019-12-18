@@ -1,8 +1,68 @@
+.trips-list-wrap {
+    width: 65%;
+    border-right: 1px solid #E5E5E5;
+
+    .trip-list-header {
+        display: flex;
+        flex-direction: column;
+        padding: 45px 50px;
+
+        .trip-list-headline {
+            text-align: start;
+            font-family: Work Sans;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 30px;
+            line-height: 35px;
+            color: #062601;
+        }   
+        
+        .trip-list-header-second {
+            display: flex;
+            justify-content: space-between;
+            font-family: Work Sans;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 21px;
+            text-align: center;  
+            color: #062601;
+            
+        }
+    }
+
+    .trips-list {
+        
+    }
+
+}
+
 .trip-wrap {
     width: 100%;
     display: flex;
     border-top: 1px solid #E5E5E5;
-    padding: 15px 50px;
+    padding: 25px 50px;
+}
+
+.trips-map-wrap {
+    width: 35%;
+    height: calc(100% - 50px);
+    background-color: green;
+    position: absolute;
+    right: 0
+}
+
+.filter-btn {
+    cursor: pointer;
+}
+
+.active-filter-btn {
+    cursor: pointer;
+    color: #4F7302;
+}
+
+.trips-main-wrap {
+    display: flex;
 }
 
 .trip-cities {
@@ -11,7 +71,7 @@
     font-weight: 600;
     font-size: 30px;
     line-height: 35px;
-    text-align: center;
+    text-align: start;
     color: #062601;
 }
 
@@ -21,6 +81,16 @@
     font-weight: 300;
     font-size: 14px;
     line-height: 16px;
+    color: #062601;
+    text-align: start;
+}
+
+.driver-name {
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
     color: #062601;
 }
 

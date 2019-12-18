@@ -12,9 +12,6 @@ const initialState = {
 
 const user = (state = initialState, action) => {
   switch (action.type) {
-    case "GET_USER": {
-      return state.user
-    }
     case "SET_USER": {
       return {
         user: action.user
