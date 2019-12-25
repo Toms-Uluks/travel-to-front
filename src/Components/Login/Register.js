@@ -16,7 +16,7 @@ class Register extends Component {
                 email: form.formGroupEmail.value,
                 password: form.formGroupPassword.value,
                 name: form.formGroupName.value,
-                phoneNumber: form.formGroupPhone.value
+                phone_number: form.formGroupPhone.value
             }).then(res => {
                 console.log(res)
             })
@@ -26,21 +26,21 @@ class Register extends Component {
                 <div className="headline">Let’s get you on going</div>
                 <div className="sub-headline">We’ll get you seated and on your way within 5 minutes</div>
                 <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="formGroupName">
-                    <Form.Control type="text" placeholder="Name" />
-                </Form.Group>
-                <Form.Group controlId="formGroupEmail">
-                    <Form.Control type="email" placeholder="Enter email" />
-                </Form.Group>
-                <Form.Group controlId="formGroupPhone">
-                    <Form.Control type="text" placeholder="Phone number" />
-                </Form.Group>
-                <Form.Group controlId="formGroupPassword">
-                    <Form.Control type="password" placeholder="Password" />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Register
-                </Button>
+                    <Form.Group controlId="formGroupName">
+                        <Form.Control type="text" placeholder="Name" />
+                    </Form.Group>
+                    <Form.Group controlId="formGroupEmail">
+                        <Form.Control type="email" placeholder="Enter email" />
+                    </Form.Group>
+                    <Form.Group controlId="formGroupPhone">
+                        <Form.Control type="text" placeholder="Phone number" />
+                    </Form.Group>
+                    <Form.Group controlId="formGroupPassword">
+                        <Form.Control type="password" placeholder="Password" />
+                    </Form.Group>
+                    <Button variant="primary" type="submit">
+                        Register
+                    </Button>
                 </Form>
             </React.Fragment>
         );

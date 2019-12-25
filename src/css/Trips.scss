@@ -32,7 +32,10 @@
     }
 
     .trips-list {
-        
+        position: absolute;
+        height: calc(100% - 200px);
+        overflow-y: auto;
+        width: 100%;
     }
 
 }

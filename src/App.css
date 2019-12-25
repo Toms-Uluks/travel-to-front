@@ -42,3 +42,40 @@
   color: #0F4001;
 
 }
+
+.flex-column, .flex-row, .flex-center-center, .flex-start-center, .flex-end-center, .flex-center-start, .flex-center-end  {
+  display: flex
+}
+
+.flex-column {
+  flex-direction: column
+}
+
+.flex-row {
+  flex-direction: row
+}
+
+.flex-center-center {
+  justify-content: center;
+  align-items: center
+}
+
+.flex-start-center {
+  justify-content: start;
+  align-items: center
+}
+
+.flex-end-center {
+  justify-content: end;
+  align-items: center
+}
+
+.flex-center-start {
+  justify-content: center;
+  align-items: start
+}
+
+.flex-center-end {
+  justify-content: center;
+  align-items: end
+}

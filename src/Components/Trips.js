@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Topbar } from './Common/Topbar';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
 import { DateTime } from 'luxon';
@@ -8,6 +7,7 @@ import { connect } from 'react-redux';
 import {BrowserRouter, Route, Switch, Link, Router, Redirect} from 'react-router-dom';
 import {setUser} from '../modules/actions';
 import { Filter } from './Common/Filter';
+import Topbar from './Common/Topbar';
 
 const mapStateToProps = (state) => {
     return state.user
@@ -74,7 +74,7 @@ class Trips extends Component {
                                             <div key="trip.id" className="trip-wrap">
                                                 <div className="trip-top-wrap">
                                                     <div className="trip-dates">
-                                                        <span className="driver-name">{trip.driver.name}</span> is leaving on {this.getDate(trip.departureTime)}
+                                                        <span className="driver-name">{trip.driver.name}</span> is leaving on {this.getDate(trip.departure_time)}
                                                         </div>
                                                     <Link to={"/trip/"+trip.id} className="trip-cities">{trip.from} - {trip.to}</Link>
                                                 </div>

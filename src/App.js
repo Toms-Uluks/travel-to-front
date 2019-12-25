@@ -13,6 +13,8 @@ import Axios from 'axios';
 import { connect } from 'react-redux'
 import {setUser} from './modules/actions';
 import Singletrip from './Components/SingleTrip';
+import Conversation from './Components/Conversation';
+import Conversationlist from './Components/Conversationlist';
 
 const App = ({ dispatch }) => {
     if(Cookies.get('userToken')) {
@@ -42,8 +44,10 @@ const App = ({ dispatch }) => {
               <Route path='/' component={Landing} exact/>
               <Route path='/trips/:tripDetails' component={Trips} exact/>
               <Route path='/trips/' component={Trips} exact/>
-              <Route path='/trip/:tripID' component={Singletrip} exact/>
+              <PrivateRoute path='/trip/:tripID' component={Singletrip} exact/>
               <Route path='/activate_user/:userToken' component={ActivateUser}/>
+              <PrivateRoute path='/conversations/:id' component={Conversation}/>
+              <PrivateRoute path='/conversations/' component={Conversationlist}/>
             </Switch>
           </BrowserRouter>
       </div>
