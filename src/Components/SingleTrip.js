@@ -30,7 +30,6 @@ class Singletrip extends Component {
         };
         Axios.get("https://travel-to-api.herokuapp.com/api/trips/"+this.props.match.params.tripID, config).then(res => {
             if(res.data.status === 'success') {
-                console.log(res.data.data)
                 this.setState({
                     trip: res.data.data
                 })

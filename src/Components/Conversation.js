@@ -21,10 +21,8 @@ class Conversation extends Component {
         var config = {
             headers: {'Authorization': "Bearer " + Cookies.get('userToken')}
         };
-        console.log(this.props)
         Axios.get("https://travel-to-api.herokuapp.com/api/conversations/"+this.props.match.params.id, config).then(res => {
             if(res.data.status == 'success') {
-                console.log(res)
                 this.setState({
                     conversation: res.data.data
                 })
@@ -48,7 +46,6 @@ class Conversation extends Component {
                     form.formGroupMessage.value = ""
                 })
             }
-            console.log(form.formGroupMessage.value)
         };
         return (  
             <div>

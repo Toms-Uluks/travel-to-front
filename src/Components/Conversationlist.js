@@ -24,7 +24,6 @@ class Conversationlist extends Component {
                 this.setState({
                     convoList: res.data.data
                 })
-                console.log(res)
             }
         })
     }

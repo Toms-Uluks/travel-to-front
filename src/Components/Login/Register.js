@@ -18,7 +18,6 @@ class Register extends Component {
                 name: form.formGroupName.value,
                 phone_number: form.formGroupPhone.value
             }).then(res => {
-                console.log(res)
             })
         };
         return (  

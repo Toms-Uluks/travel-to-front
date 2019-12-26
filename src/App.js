@@ -15,6 +15,7 @@ import {setUser} from './modules/actions';
 import Singletrip from './Components/SingleTrip';
 import Conversation from './Components/Conversation';
 import Conversationlist from './Components/Conversationlist';
+import Addtrip from './Components/Addtrip';
 
 const App = ({ dispatch }) => {
     if(Cookies.get('userToken')) {
@@ -42,8 +43,9 @@ const App = ({ dispatch }) => {
             <Switch>
               <Route path='/login' component={AuthPage} exact/>
               <Route path='/' component={Landing} exact/>
+              <Route path='/add_trip' component={Addtrip} exact/>
               <Route path='/trips/:tripDetails' component={Trips} exact/>
-              <Route path='/trips/' component={Trips} exact/>
+              <Route path='/trips' component={Trips} exact/>
               <PrivateRoute path='/trip/:tripID' component={Singletrip} exact/>
               <Route path='/activate_user/:userToken' component={ActivateUser}/>
               <PrivateRoute path='/conversations/:id' component={Conversation}/>

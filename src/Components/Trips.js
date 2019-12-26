@@ -35,7 +35,6 @@ class Trips extends Component {
         var details = this.props.match.params.tripDetails ? this.props.match.params.tripDetails.split('_') : ['', '','']
         Axios.get("https://travel-to-api.herokuapp.com/api/trips?from="+details[0]+"&to="+details[1]+"&date="+details[2], config).then(res => {
             if(res.data.status === 'success') {
-                console.log(res.data.data)
                 this.setState(state => {
                     const tripList = state.trips.push(...res.data.data)
                     return {tripList}

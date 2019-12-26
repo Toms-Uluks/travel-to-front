@@ -13,6 +13,7 @@ import { DateTime } from 'luxon';
 import Topbar from './Common/Topbar';
 
 const mapStateToProps = (state, ownProps) => {
+    console.log(state.user)
     return state.user
 }
 class Landing extends Component {

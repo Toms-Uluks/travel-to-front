@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Switch, Link, Router, Redirect} from 'react-router
 import burger from '../../Assets/burger.png'
 import '../../css/common.scss'
 import Cookies from 'js-cookie';
+import user from '../../Assets/img/user.png'
 
 class Topbar extends Component {
     constructor(props) {
@@ -16,7 +17,7 @@ class Topbar extends Component {
             openSidebar: !this.state.openSidebar
         })
     } 
-    logOut(evt) {
+    logOut() {
         Cookies.remove('userToken');
         window.location.reload();
     }
@@ -24,7 +25,7 @@ class Topbar extends Component {
         return (
             <React.Fragment>
                 <div className="topbar-wrap">
-                    {this.props.user && this.props.user.name ? <div><img onClick={() => this.setSidebar()} className="burger-icon" src={burger} />{this.props.user.name}</div> : <Link to="/Login" className="login" >Login</Link>}
+                    {this.props.user && this.props.user.name ? <div><img onClick={() => this.setSidebar()} className="burger-icon" src={burger} /></div> : <Link to="/Login" className="login" >Login</Link>}
                     <div className="links-wrap">
                         <Link activeclassname='is-active' to="/" >Home</Link>
                         <Link activeclassname='is-active' to="/Help/Become_A_Driver">Become a driver</Link>
@@ -33,6 +34,11 @@ class Topbar extends Component {
                 </div>
                 {this.state.openSidebar ? (
                     <div className="sidebar">
+                        <div>
+                            <img src={this.props.user.profile_img ? this.props.user.profile_img : user }></img>
+                            <span>{ this.props.user.name}</span>
+                        </div>
+                        {this.props.user.role == "driver" ? <Link to="/add_trip">Add a ride</Link> : null}
                         <Link to="/settings">Account Settings</Link>
                         <Link to="/terms">Terms Of Use</Link>
                         <Link to="/ride_history">Ride History</Link>
