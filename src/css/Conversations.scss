@@ -1,0 +1,35 @@
+.message-wrap {
+    margin: 40px;
+    position: absolute;
+    height: calc(100% - 130px);
+    width: -webkit-fill-available;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .form-group {
+        width: 90%;
+    }
+
+    .btn {
+        height: fit-content;
+        margin: 0 10px;
+    }
+}
+
+.message {
+    display: flex;
+    justify-content: start;
+    width: 100%;
+}
+
+.my-message {
+    justify-content: flex-end;
+}
+
+.no-messages {
+    font-size: 45px;
+    font-family: Work Sans;
+    color: #8c8b8b;
+    margin-top: 40px;
+}

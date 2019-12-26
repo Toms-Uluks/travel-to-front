@@ -8,11 +8,12 @@ import 'react-dates/lib/css/_datepicker.css';
 import '../css/Landing.scss';
 import Axios from 'axios';
 import {Redirect} from 'react-router-dom';
-import { Topbar } from './Common/Topbar';
 import { connect } from 'react-redux';
 import { DateTime } from 'luxon';
+import Topbar from './Common/Topbar';
 
 const mapStateToProps = (state, ownProps) => {
+    console.log(state.user)
     return state.user
 }
 class Landing extends Component {

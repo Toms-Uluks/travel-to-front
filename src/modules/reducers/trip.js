@@ -2,13 +2,13 @@
 const initialState = {
     trip: {
         created_at: "",
-        departureTime: "",
+        departure_time: "",
         driver_id: null,
         from: "",
         id: null,
-        numberOfPassengers: null,
+        number_of_passengers: null,
         price: "",
-        requiresContact: true,
+        requires_contact: true,
         status: "",
         to: "",
         updated_at: "",

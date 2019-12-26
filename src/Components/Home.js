@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Topbar } from './Common/Topbar';
+import Topbar from './Common/Topbar';
 
 class Home extends Component {
     constructor(props) {
