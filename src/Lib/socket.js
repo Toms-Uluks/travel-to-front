@@ -3,8 +3,8 @@ import Ws from '@adonisjs/websocket-client';
 
 export class SocketConnection {
   connect (token) {
-    this.ws = Ws('wss://adonis-sockets-api.herokuapp.com/')
-      .withApiToken(token)
+    this.ws = Ws("wss://travel-to-api.herokuapp.com/")
+      //.withApiToken(token)
       .connect();
 
     this.ws.on('open', () => {
