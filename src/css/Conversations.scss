@@ -33,3 +33,39 @@
     color: #8c8b8b;
     margin-top: 40px;
 }
+
+.convo-wrap {
+    margin: 40px 80px;
+    .convo-headline, .unread, .read {
+        font-family: Work Sans;
+        font-style: normal;
+        text-align: center;
+        color: #062601;
+    }
+
+    .convo-headline {
+        font-size: 30px;
+        font-weight: 600px;
+    }
+
+     
+    &:hover{
+        text-decoration: none !important;
+    }
+
+    .unread, .read {
+        margin-left: 20px;
+        height: 25px;
+        max-width: 800px;
+        overflow: hidden;
+        text-align: start;
+    }
+
+    .read {
+        color: #4F7302;
+    }
+
+    .unread {
+        font-weight: 600;
+    }
+}

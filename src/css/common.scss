@@ -68,6 +68,20 @@
         margin-left: 20px;
         margin-bottom: 20px
     }
+
+    form {
+        height: 100%;
+        justify-content: space-evenly;
+        margin-top: 0;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+
+    .btn-primary {
+        width: 250px;
+    }
 }
 
 

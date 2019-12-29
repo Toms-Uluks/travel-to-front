@@ -43,7 +43,19 @@
 
 }
 
-.flex-column, .flex-row, .flex-center-center, .flex-start-center, .flex-end-center, .flex-center-start, .flex-center-end  {
+.btn-primary {
+  background-color: #062601 !important;
+  border: none !important;
+  
+}
+.btn-primary:hover, .btn-primary:focus {
+    background-color: #4F7302 !important;
+}
+.btn-primary:active {
+    background-color: #062601 !important;
+}
+
+.flex-column, .flex-row, .flex-center-center, .flex-start-center, .flex-end-center, .flex-center-start, .flex-center-end, .flex-evenly-start  {
   display: flex
 }
 
@@ -78,4 +90,9 @@
 .flex-center-end {
   justify-content: center;
   align-items: end
+}
+
+.flex-evenly-start {
+  justify-content: space-evenly;
+  align-items: flex-start;
 }
