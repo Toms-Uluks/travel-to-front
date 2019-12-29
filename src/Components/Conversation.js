@@ -26,6 +26,7 @@ class Conversation extends Component {
                 this.setState({
                     conversation: res.data.data
                 })
+                console.log(res)
             }
 
         })

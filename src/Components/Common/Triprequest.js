@@ -60,11 +60,16 @@ class Triprequest extends Component {
                             </Dropdown>
                         </div>
                         <Form.Group controlId="formGroupMessage">
-                            <Form.Control type="text" placeholder="Message" />
+                            <Form.Control required as="textarea" rows="3" placeholder="Message" />
                         </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Send trip request
-                        </Button>
+                        <div className="flex-evenly-start">
+                            <Button variant="primary" type="submit">
+                                Send trip request
+                            </Button>
+                            <Button variant="primary" onClick={() => {this.props.onSuccess(false)}} type="cancel">
+                                Cancel
+                            </Button>
+                        </div>
                     </Form>
                 </div>
             </div>

@@ -28,7 +28,7 @@ class Topbar extends Component {
                     {this.props.user && this.props.user.name ? <div><img onClick={() => this.setSidebar()} className="burger-icon" src={burger} /></div> : <Link to="/Login" className="login" >Login</Link>}
                     <div className="links-wrap">
                         <Link activeclassname='is-active' to="/" >Home</Link>
-                        <Link activeclassname='is-active' to="/Help/Become_A_Driver">Become a driver</Link>
+                        {this.props.user.role == "driver" ?  <Link to="/add_trip">Add a ride</Link> : <Link activeclassname='is-active' to="/Help/Become_A_Driver">Become a driver</Link>}
                         <Link activeclassname='is-active' to="/Help">Help</Link>
                     </div>
                 </div>
@@ -38,7 +38,6 @@ class Topbar extends Component {
                             <img src={this.props.user.profile_img ? this.props.user.profile_img : user }></img>
                             <span>{ this.props.user.name}</span>
                         </div>
-                        {this.props.user.role == "driver" ? <Link to="/add_trip">Add a ride</Link> : null}
                         <Link to="/settings">Account Settings</Link>
                         <Link to="/terms">Terms Of Use</Link>
                         <Link to="/ride_history">Ride History</Link>
