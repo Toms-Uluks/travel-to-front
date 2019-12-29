@@ -17,6 +17,11 @@
     }
 }
 
+.message-text-wrap {
+    height: 100%;
+    overflow-y: scroll;
+}
+
 .message {
     display: flex;
     justify-content: start;
