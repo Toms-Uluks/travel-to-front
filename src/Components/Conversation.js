@@ -6,6 +6,7 @@ import Topbar from './Common/Topbar';
 import '../css/Conversations.scss';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import connection from '../Lib/socket';
 
 const mapStateToProps = (state, ownProps) => {
     return state.user
@@ -17,10 +18,14 @@ class Conversation extends Component {
             conversation: {}
         }
     }
+
     componentDidMount() {
         var config = {
             headers: {'Authorization': "Bearer " + Cookies.get('userToken')}
         };
+        connection.connect(Cookies.get('userToken'));
+        connection.subscribe(`conversation:${this.props.match.params.id}`, this.handleSubmit)
+
         Axios.get("https://travel-to-api.herokuapp.com/api/conversations/"+this.props.match.params.id, config).then(res => {
             if(res.data.status == 'success') {
                 this.setState({
@@ -29,25 +34,27 @@ class Conversation extends Component {
                 console.log(res)
             }
 
+        }).then(() => {
+            //Axios.put("https://travel-to-api.herokuapp.com/api/conversations/")
         })
     }
+    handleSubmit = event => {
+       event.preventDefault();
+       const form = event.currentTarget;
+       var config = {
+           headers: {'Authorization': "Bearer " + Cookies.get('userToken')}
+       };
+       if(form.formGroupMessage.value) {
+           Axios.post('https://travel-to-api.herokuapp.com/api/conversations/'+ this.state.conversation.id +'/message', {
+               message: form.formGroupMessage.value,
+               receiver_id: this.props.user.id == this.state.conversation.messages[0].receiver_id ? this.state.conversation.messages[0].sender_id : this.state.conversation.messages[0].receiver_id  
+           }, config).then(() => {
+               this.componentDidMount()
+               form.formGroupMessage.value = ""
+           })
+       }
+   };
     render() { 
-        const handleSubmit = event => {
-            event.preventDefault();
-            const form = event.currentTarget;
-            var config = {
-                headers: {'Authorization': "Bearer " + Cookies.get('userToken')}
-            };
-            if(form.formGroupMessage.value) {
-                Axios.post('https://travel-to-api.herokuapp.com/api/conversations/'+ this.state.conversation.id +'/message', {
-                    message: form.formGroupMessage.value,
-                    receiver_id: this.props.user.id == this.state.conversation.messages[0].receiver_id ? this.state.conversation.messages[0].sender_id : this.state.conversation.messages[0].receiver_id  
-                }, config).then(() => {
-                    this.componentDidMount()
-                    form.formGroupMessage.value = ""
-                })
-            }
-        };
         return (  
             <div>
                 <Topbar user={this.props.user}></Topbar>
@@ -60,7 +67,7 @@ class Conversation extends Component {
                         )}) : null}
                     </div>
                     <div>
-                        <Form onSubmit={handleSubmit}>
+                        <Form onSubmit={this.handleSubmit}>
                             <Form.Group controlId="formGroupMessage">
                                 <Form.Control type="text" placeholder="Message" />
                             </Form.Group>
