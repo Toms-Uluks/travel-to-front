@@ -87,8 +87,8 @@ class Conversation extends Component {
             var config = {
                 headers: {'Authorization': "Bearer " + Cookies.get('userToken')}
             }
-            Axios.put('https://travel-to-api.herokuapp.com/api/tripRequests/'+this.state.conversation.tripRequest.id + '/' + status, config).then((res) => {
-                console.log(res)
+            Axios.put('https://travel-to-api.herokuapp.com/api/tripRequests/'+this.state.conversation.tripRequest.id + '/' + status, {}, config).then((res) => {
+                this.componentDidMount()
             })
         }
 
@@ -116,7 +116,7 @@ class Conversation extends Component {
                             </Button>
                         </Form>
                     </div>
-                    {this.props.user.role == "driver" ? <div className="flex-center-center">
+                    {this.props.user.role == "driver" && this.state.conversation.tripRequest && this.state.conversation.tripRequest.status == 'Pending' ? <div className="flex-center-center">
                         <Button variant="primary" type="submit" onClick={() => {setusuerState('accept')}}>
                             Accept passenger
                         </Button>

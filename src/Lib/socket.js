@@ -4,7 +4,7 @@ import Ws from '@adonisjs/websocket-client';
 export class SocketConnection {
   connect (token) {
     this.ws = Ws("wss://travel-to-api.herokuapp.com/")
-      //.withApiToken(token)
+      .withApiToken(token)
       .connect();
 
     this.ws.on('open', () => {
