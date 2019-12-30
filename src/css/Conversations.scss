@@ -1,7 +1,8 @@
 .message-wrap {
     margin: 40px;
+    margin-top: 0;
     position: absolute;
-    height: calc(100% - 130px);
+    height: calc(100% - 90px);
     width: -webkit-fill-available;
     display: flex;
     flex-direction: column;
@@ -20,6 +21,14 @@
 .message-text-wrap {
     height: 100%;
     overflow-y: scroll;
+    padding-top: 40px;
+    p {
+        background-color: #062601;
+        color: #ffffff;
+        width: fit-content;
+        padding: 5px 15px;
+        border-radius: 10px;
+    }
 }
 
 .message {
@@ -30,6 +39,9 @@
 
 .my-message {
     justify-content: flex-end;
+    p {
+        background-color: #8c8b8b;
+    }
 }
 
 .no-messages {

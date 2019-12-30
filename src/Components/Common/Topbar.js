@@ -26,6 +26,15 @@ class Topbar extends Component {
             <React.Fragment>
                 <div className="topbar-wrap">
                     {this.props.user && this.props.user.name ? <div><img onClick={() => this.setSidebar()} className="burger-icon" src={burger} /></div> : <Link to="/Login" className="login" >Login</Link>}
+                    
+                    {this.props.extraInfo && this.props.extraInfo.trip ? 
+                        <div className="flex-row flex-center-center">
+                            <div className="convo-headline">{this.props.extraInfo.trip.from + ' - ' +  this.props.extraInfo.trip.to}</div>
+                            <div className={this.props.extraInfo.tripRequest.status}></div>
+                            <div className="trip-status">{this.props.extraInfo.tripRequest.status}</div>
+                        </div> 
+                    : null}
+
                     <div className="links-wrap">
                         <Link activeclassname='is-active' to="/" >Home</Link>
                         {this.props.user.role == "driver" ?  <Link to="/add_trip">Add a ride</Link> : <Link activeclassname='is-active' to="/Help/Become_A_Driver">Become a driver</Link>}
