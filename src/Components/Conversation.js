@@ -41,6 +41,7 @@ class Conversation extends Component {
             //Axios.put("https://travel-to-api.herokuapp.com/api/conversations/")
         })
     }
+
     handleMessageAdd = message => {
     const { type, data } = message;
 
@@ -81,14 +82,24 @@ class Conversation extends Component {
                })
            }
         };
+
+        const setusuerState = (status) => {
+            var config = {
+                headers: {'Authorization': "Bearer " + Cookies.get('userToken')}
+            }
+            Axios.put('https://travel-to-api.herokuapp.com/api/tripRequests/'+this.state.conversation.tripRequest.id + '/' + status, {}, config).then((res) => {
+                this.componentDidMount()
+            })
+        }
+
         return (  
             <div>
-                <Topbar user={this.props.user}></Topbar>
+                <Topbar user={this.props.user} extraInfo={this.state.conversation}></Topbar>
                 <div className="message-wrap">
                     <div className="message-text-wrap">
                         {this.state.conversation.messages ? this.state.conversation.messages.map(message => {return (
-                            <div>
-                                <p className={message.sender_id == this.props.user.id ? 'my-message message' : 'message'}>{message.message}</p>
+                            <div className={message.sender_id == this.props.user.id ? 'my-message message' : 'message'}>
+                                <p>{message.message}</p>
                             </div>
                         )}) : null}
                         <div style={{ float:"left", clear: "both" }}
@@ -105,6 +116,14 @@ class Conversation extends Component {
                             </Button>
                         </Form>
                     </div>
+                    {this.props.user.role == "driver" && this.state.conversation.tripRequest && this.state.conversation.tripRequest.status == 'Pending' ? <div className="flex-center-center">
+                        <Button variant="primary" type="submit" onClick={() => {setusuerState('accept')}}>
+                            Accept passenger
+                        </Button>
+                        <Button variant="primary" type="submit" onClick={() => {setusuerState('reject')}}>
+                            Deny passenger
+                        </Button>
+                    </div> : null}
                 </div>
             </div>
         );

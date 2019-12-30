@@ -4,15 +4,15 @@ import Ws from '@adonisjs/websocket-client';
 export class SocketConnection {
   connect (token) {
     this.ws = Ws("wss://travel-to-api.herokuapp.com/")
-      //.withApiToken(token)
+      .withApiToken(token)
       .connect();
 
     this.ws.on('open', () => {
-      console.log('Connection initialized')
+      //console.log('Connection initialized')
     });
 
     this.ws.on('close', () => {
-      console.log('Connection closed')
+      //console.log('Connection closed')
     });
 
     return this
@@ -25,12 +25,12 @@ export class SocketConnection {
       const result = this.ws.subscribe(channel);
 
       result.on('message', message => {
-        console.log('Incoming', message);
+        //console.log('Incoming', message);
         handler(message)
       });
 
       result.on('error', (error) => {
-        console.error(error)
+        //console.error(error)
       });
 
       return result
