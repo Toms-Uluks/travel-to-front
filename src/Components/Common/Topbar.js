@@ -49,7 +49,7 @@ class Topbar extends Component {
                         </div>
                         <Link to="/settings">Account Settings</Link>
                         <Link to="/terms">Terms Of Use</Link>
-                        <Link to="/ride_history">Ride History</Link>
+                        <Link to="/trip_history">Trip History</Link>
                         <Link to="/conversations">Conversations</Link>
                         <Link onClick={() => {this.logOut()}}>Log Out</Link>
                     </div>

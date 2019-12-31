@@ -17,6 +17,7 @@ import Conversation from './Components/Conversation';
 import Conversationlist from './Components/Conversationlist';
 import Addtrip from './Components/Addtrip';
 import Usersettings from './Components/Usersettings';
+import Triphistory from './Components/Triphistory';
 
 const App = ({ dispatch }) => {
     if(Cookies.get('userToken')) {
@@ -52,6 +53,7 @@ const App = ({ dispatch }) => {
               <PrivateRoute path='/conversations/:id' component={Conversation}/>
               <PrivateRoute path='/conversations/' component={Conversationlist}/>
               <PrivateRoute path='/settings/' component={Usersettings}/>
+              <PrivateRoute path='/trip_history/' component={Triphistory}/>
             </Switch>
           </BrowserRouter>
       </div>
