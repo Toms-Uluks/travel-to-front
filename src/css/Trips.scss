@@ -101,3 +101,18 @@
     display: flex;
     flex-direction: column;
 }
+
+.trip-history {
+    .trip-header {
+        color: #062601;
+        font-size: 38px;
+        margin: 40px;
+        text-align: start;
+        font-weight: 500;
+    }
+
+    .trip-cities {
+        font-weight: normal;
+        font-size:  20px;
+    }
+}
