@@ -29,8 +29,10 @@ export class SocketConnection {
         handler(message)
       });
 
+      console.log(result)
+
       result.on('error', (error) => {
-        //console.error(error)
+        console.error(error)
       });
 
       return result
