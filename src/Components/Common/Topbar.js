@@ -4,6 +4,7 @@ import burger from '../../Assets/burger.png'
 import '../../css/common.scss'
 import Cookies from 'js-cookie';
 import user from '../../Assets/img/user.png'
+import Axios from 'axios';
 
 class Topbar extends Component {
     constructor(props) {
@@ -21,6 +22,15 @@ class Topbar extends Component {
         Cookies.remove('userToken');
         window.location.reload();
     }
+    becomeADriver() {
+        
+        var config = {
+            headers: {'Authorization': "Bearer " + Cookies.get('userToken')}
+        };
+        Axios.put('https://travel-to-api.herokuapp.com/api/users/'+this.props.user.id+'/becomeDriver', {} , config).then((res) => {
+            console.log(res)
+        });
+    }
     render() {
         return (
             <React.Fragment>
@@ -37,7 +47,7 @@ class Topbar extends Component {
 
                     <div className="links-wrap">
                         <Link activeclassname='is-active' to="/" >Home</Link>
-                        {this.props.user.role == "driver" ?  <Link to="/add_trip">Add a ride</Link> : <Link activeclassname='is-active' to="/Help/Become_A_Driver">Become a driver</Link>}
+                        {this.props.user.role == "driver" ?  <Link to="/add_trip">Add a ride</Link> : <a onClick={() => {this.becomeADriver()}}>Become a driver</a>}
                         <Link activeclassname='is-active' to="/Help">Help</Link>
                     </div>
                 </div>
@@ -51,7 +61,7 @@ class Topbar extends Component {
                         <Link to="/terms">Terms Of Use</Link>
                         <Link to="/trip_history">Trip History</Link>
                         <Link to="/conversations">Conversations</Link>
-                        <Link onClick={() => {this.logOut()}}>Log Out</Link>
+                        <a onClick={() => {this.logOut()}}>Log Out</a>
                     </div>
                 ) : null}
             </React.Fragment>
