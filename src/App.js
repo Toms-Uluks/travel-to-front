@@ -23,24 +23,7 @@ import connection from './Lib/socket';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = ({ dispatch }) => {
-    const handleMessageAdd = message => {
-      const { type, data } = message;
-      console.log(type, data)
-        // you could handle various types here, like deleting or editing a message
-        /*switch (type) {
-            case 'room:newMessage':
-                this.setState(prevState => ({
-                    conversation: {
-                        ...prevState.conversation,
-                        messages: [...prevState.conversation.messages, data]
-                    }
-                }));
-                console.log('this', this.state)
-            break;
-            default:
-            }
-       */
-    };
+    
 
     if(Cookies.get('userToken')) {
       var config = {
@@ -50,12 +33,24 @@ const App = ({ dispatch }) => {
         if(res.data.status === 'success') {
           dispatch(setUser(res.data.data))
           connection.connect(Cookies.get('userToken'));
-          connection.subscribe(`notification:${res.data.data.id}`, handleMessageAdd)
+          connection.subscribeToNotification(`notification:${res.data.data.id}`, handleMessageAdd)
         }
       })
 
     }
-
+    
+    const handleMessageAdd = message => {
+      const { type, data } = message;
+      console.log(message)
+        // you could handle various types here, like deleting or editing a message
+        switch (type) {
+            case 'notification:newNotification':
+                toast(data.message)
+            break;
+            default:
+        }
+       
+    };
     
     
     const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -84,7 +79,6 @@ const App = ({ dispatch }) => {
               <PrivateRoute path='/trip_history/' component={Triphistory}/>
             </Switch>
           </BrowserRouter>
-          <button onClick={ () => toast("Wow so easy !")}>Notify !</button>
           <ToastContainer />
       </div>
   );

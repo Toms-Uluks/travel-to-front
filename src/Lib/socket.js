@@ -18,7 +18,7 @@ export class SocketConnection {
     return this
   }
 
-  subscribe (channel, handler) {
+  subscribeToMessage (channel, handler) {
     if (!this.ws) {
       setTimeout(() => this.subscribe(channel), 1000)
     } else {
@@ -27,6 +27,27 @@ export class SocketConnection {
       result.on('message', message => {
         //console.log('Incoming', message);
         handler(message)
+      });
+
+      console.log(result)
+
+      result.on('error', (error) => {
+        console.error(error)
+      });
+
+      return result
+    }
+  }
+
+  subscribeToNotification (channel, handler) {
+    if (!this.ws) {
+      setTimeout(() => this.subscribe(channel), 1000)
+    } else {
+      const result = this.ws.subscribe(channel);
+
+      result.on('notification', notification => {
+        console.log('Incoming', handler);
+        handler(notification)
       });
 
       console.log(result)

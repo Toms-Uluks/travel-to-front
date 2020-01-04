@@ -26,7 +26,7 @@ class Conversation extends Component {
             headers: {'Authorization': "Bearer " + Cookies.get('userToken')}
         };
         connection.connect(Cookies.get('userToken'));
-        connection.subscribe(`conversation:${this.props.match.params.id}`, this.handleMessageAdd)
+        connection.subscribeToMessage(`conversation:${this.props.match.params.id}`, this.handleMessageAdd)
 
         Axios.get("https://travel-to-api.herokuapp.com/api/conversations/"+this.props.match.params.id, config).then(res => {
             if(res.data.status == 'success') {
