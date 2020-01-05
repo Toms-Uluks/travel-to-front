@@ -47,6 +47,23 @@ a {
 
 }
 
+.role-wrap {
+  background-color: #0F4001;
+  width: 100%;
+  margin: 20px;
+  border-radius: 3px;
+}
+
+.role-wrap div {
+  padding: 20px;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.role-wrap .active {
+  background-color: #4F7302
+}
+
 .btn-primary {
   background-color: #062601 !important;
   border: none !important;
