@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
-import '../css/Single-Trip.scss';
+import '../../css/Single-Trip.scss';
 import { DateTime } from 'luxon';
 import Button from 'react-bootstrap/Button';
-import Triprequest from './Common/Triprequest';
-import Topbar from './Common/Topbar';
-import { Cancelwindow } from './Common/Cancelwindow';
+import Triprequest from '../Common/Triprequest';
+import Topbar from '../Common/Topbar';
+import { Cancelwindow } from '../Common/Cancelwindow';
 
 const mapStateToProps = (state) => {
     return state.user

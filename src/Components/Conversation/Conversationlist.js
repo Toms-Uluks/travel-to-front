@@ -3,7 +3,7 @@ import Axios from 'axios';
 import Cookies from 'js-cookie';
 import {BrowserRouter, Route, Switch, Link, Router, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
-import Topbar from './Common/Topbar';
+import Topbar from '../Common/Topbar';
 
 const mapStateToProps = (state, ownProps) => {
     return state.user

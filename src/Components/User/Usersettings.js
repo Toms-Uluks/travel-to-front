@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Topbar from './Common/Topbar';
+import Topbar from '../Common/Topbar';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
-import '../css/Settings.scss'
+import '../../css/Settings.scss'
 const mapStateToProps = (state) => {
     return state.user
 }

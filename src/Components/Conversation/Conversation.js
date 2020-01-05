@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
 import { connect } from 'react-redux';
-import Topbar from './Common/Topbar';
-import '../css/Conversations.scss';
+import Topbar from '../Common/Topbar';
+import '../../css/Conversations.scss';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import connection from '../Lib/socket';
+import connection from '../../Lib/socket';
 
 const mapStateToProps = (state, ownProps) => {
     return state.user

@@ -5,19 +5,18 @@ import {BrowserRouter, Route, Switch, Link, Router, Redirect} from 'react-router
 import Cookies from 'js-cookie';
 
 import AuthPage from './Components/Login/AuthPage'
-import Home from './Components/Home';
-import ActivateUser from './Components/ActivateUser';
+import ActivateUser from './Components/User/ActivateUser';
 import Landing from './Components/Landing';
-import Trips from './Components/Trips';
+import Trips from './Components/Trip/Trips';
 import Axios from 'axios';
 import { connect } from 'react-redux'
 import {setUser} from './modules/actions';
-import Singletrip from './Components/SingleTrip';
-import Conversation from './Components/Conversation';
-import Conversationlist from './Components/Conversationlist';
-import Addtrip from './Components/Addtrip';
-import Usersettings from './Components/Usersettings';
-import Triphistory from './Components/Triphistory';
+import Singletrip from './Components/Trip/SingleTrip';
+import Conversation from './Components/Conversation/Conversation';
+import Conversationlist from './Components/Conversation/Conversationlist';
+import Addtrip from './Components/Trip/Addtrip';
+import Usersettings from './Components/User/Usersettings';
+import Triphistory from './Components/Trip/Triphistory';
 import { ToastContainer, toast } from 'react-toastify';
 import connection from './Lib/socket';
 import 'react-toastify/dist/ReactToastify.css';

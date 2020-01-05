@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Topbar from './Common/Topbar';
+import Topbar from '../Common/Topbar';
 import { connect } from 'react-redux';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
 import {BrowserRouter, Route, Switch, Link, Router, Redirect} from 'react-router-dom';
 import { DateTime } from 'luxon';
-import '../css/Trips.scss'
+import '../../css/Trips.scss'
 
 const mapStateToProps = (state) => {
     return state.user
