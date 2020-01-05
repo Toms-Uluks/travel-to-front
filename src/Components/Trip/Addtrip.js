@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Topbar from './Common/Topbar';
+import Topbar from '../Common/Topbar';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import '../css/Addtrip.scss';
+import '../../css/Addtrip.scss';
 import {SingleDatePicker} from 'react-dates';
 import Axios from 'axios';
 import Cookies from 'js-cookie';

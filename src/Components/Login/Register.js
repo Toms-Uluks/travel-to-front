@@ -6,7 +6,9 @@ import Axios from 'axios';
 class Register extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = {  
+            isDriver: false
+        }
     }
     render() { 
         const handleSubmit = event => {
@@ -18,13 +20,34 @@ class Register extends Component {
                 name: form.formGroupName.value,
                 phone_number: form.formGroupPhone.value
             }).then(res => {
+                if(this.state.isDriver) {
+                    var config = {
+                        headers: {'Authorization': "Bearer " + res.data.data.token}
+                      };
+                      Axios.get("https://travel-to-api.herokuapp.com/api/user", config).then(x => {
+                        if(x.data.status === 'success') {
+                            Axios.put('https://travel-to-api.herokuapp.com/api/users/'+x.data.data+'/becomeDriver', {} , config).then(() => {
+                            });
+                        }
+                      })
+                
+                }
             })
         };
+        const changeRole = (isDriver) => {
+            this.setState({
+                isDriver: isDriver
+            })
+        }
         return (  
             <React.Fragment>
                 <div className="headline">Let’s get you on going</div>
                 <div className="sub-headline">We’ll get you seated and on your way within 5 minutes</div>
                 <Form onSubmit={handleSubmit}>
+                    <div className="flex-row flex-center-center role-wrap">
+                        <div className={!this.state.isDriver ? 'active' : ''} onClick={() => changeRole(false)} >Passenger</div>
+                        <div className={this.state.isDriver ? 'active' : ''} onClick={() => changeRole(true)}>Driver</div>
+                    </div>
                     <Form.Group controlId="formGroupName">
                         <Form.Control type="text" placeholder="Name" />
                     </Form.Group>

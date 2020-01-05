@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
 import { DateTime } from 'luxon';
-import '../css/Trips.scss';
-import Topbar from './Common/Topbar';
+import '../../css/Trips.scss';
+import Topbar from '../Common/Topbar';
 import { connect } from 'react-redux';
 import {BrowserRouter, Route, Switch, Link, Router, Redirect} from 'react-router-dom';
-import {setUser} from '../modules/actions';
-import { Filter } from './Common/Filter';
+import {setUser} from '../../modules/actions';
+import { Filter } from '../Common/Filter';
 
 const mapStateToProps = (state) => {
     return state.user

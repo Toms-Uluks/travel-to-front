@@ -43,8 +43,8 @@ class Triprequest extends Component {
         }
         return (  
 
-            <div className="trip-request-wrap">
-                <div className="trip-request-box">
+            <div className="popup-wrap">
+                <div className="popup-box">
                     <Form className="flex-column" onSubmit={handleSubmit}>
                         <div className="flex-row flex-start-center">
                             <div>Number of passengers</div>

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Topbar from './Common/Topbar';
+import Topbar from '../Common/Topbar';
 import { connect } from 'react-redux';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
 import {BrowserRouter, Route, Switch, Link, Router, Redirect} from 'react-router-dom';
 import { DateTime } from 'luxon';
-import '../css/Trips.scss'
+import '../../css/Trips.scss'
 
 const mapStateToProps = (state) => {
     return state.user
@@ -41,7 +41,7 @@ class Triphistory extends Component {
                 <Topbar user={this.props.user}></Topbar>
                 {this.props.user.role == "driver" && this.state.driver.length > 0 ? 
                     <div>
-                        <div className="trip-header">My rides</div>
+                        <div className="trip-header">My trips</div>
                         <div>
                             {this.state.driver.map(trip => {
                                 return(
@@ -58,7 +58,7 @@ class Triphistory extends Component {
                 : null}
                     {this.state.passenger.length > 0 ?
                         <div>
-                            <div className="trip-header">Rides I've taken</div>
+                            <div className="trip-header">Trips I've taken</div>
                             <div>
                                 {this.state.passenger.map(trip => {
                                         return(
