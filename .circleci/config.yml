@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:12.9.1-browsers
+  working_directory: ~/repo
+  steps:
+    - checkout
+
+    - restore_cache:
+      keys:
+        - v1-dependencies-{{ checksum "package.json" }}
+        - v1-dependencies-
+
+    - run: npm install
+
+    - save_cache:
+      paths:
+        - node_modules
+      key: v1-dependencies-{{ checksum "package.json" }}
+
+    - run:
+        name: Run Cypress tests
+        command: npm run ci:cypress-run
+    - store_artifacts:
+        path: cypress/videos
+    - store_artifacts:
+        path: cypress/screenshots
