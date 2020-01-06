@@ -58,10 +58,19 @@ a {
   padding: 20px;
   width: 100%;
   border-radius: 3px;
+  cursor: pointer;
 }
 
 .role-wrap .active {
   background-color: #4F7302
+}
+
+.auth-message-block {
+  border: 1px solid #282c34;
+  width: fit-content;
+  margin: 30px auto;
+  padding: 40px 90px;
+  border-radius: 3px;
 }
 
 .btn-primary {
