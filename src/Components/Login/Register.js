@@ -49,18 +49,18 @@ class Register extends Component {
                         <div className={this.state.isDriver ? 'active' : ''} onClick={() => changeRole(true)}>Driver</div>
                     </div>
                     <Form.Group controlId="formGroupName">
-                        <Form.Control type="text" placeholder="Name" />
+                        <Form.Control type="text" placeholder="Name" data-cy="name"/>
                     </Form.Group>
                     <Form.Group controlId="formGroupEmail">
-                        <Form.Control type="email" placeholder="Enter email" />
+                        <Form.Control type="email" placeholder="Enter email" data-cy="email"/>
                     </Form.Group>
                     <Form.Group controlId="formGroupPhone">
-                        <Form.Control type="text" placeholder="Phone number" />
+                        <Form.Control type="text" placeholder="Phone number" data-cy="phoneNumber"/>
                     </Form.Group>
                     <Form.Group controlId="formGroupPassword">
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control type="password" placeholder="Password" data-cy="password"/>
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+                    <Button variant="primary" type="submit" data-cy="register">
                         Register
                     </Button>
                 </Form>

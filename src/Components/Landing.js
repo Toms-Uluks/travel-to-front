@@ -52,10 +52,10 @@ class Landing extends Component {
                     <Form onSubmit={handleSubmit}>
                         <div className="input-wrap">
                             <Form.Group controlId="formGroupFrom">
-                                <Form.Control type="text" placeholder="From" />
+                                <Form.Control type="text" placeholder="From" data-cy="from"/>
                             </Form.Group>
                             <Form.Group controlId="formGroupTo">
-                                <Form.Control type="text" placeholder="To" />
+                                <Form.Control type="text" placeholder="To" data-cy="to"/>
                             </Form.Group>
                         </div>
                         <div className="input-wrap">
@@ -78,7 +78,7 @@ class Landing extends Component {
                             </Form.Group>
                         </div>
                         <div className="input-wrap">
-                            <Button variant="primary" type="submit">
+                            <Button variant="primary" type="submit" data-cy="searchTrips"> 
                                 Search
                             </Button>
                         </div>

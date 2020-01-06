@@ -23,7 +23,7 @@ class AuthPage extends Component {
                     {this.state.activeForm == 'login' ? 
                     <div>
                         <Login></Login> 
-                        <div className="secondary-btn" onClick={() => this.changeFormState('register')}>Register</div>
+                        <div className="secondary-btn" onClick={() => this.changeFormState('register')} data-cy="registerLink">Register</div>
                     </div>
                     : null}
                 </div>

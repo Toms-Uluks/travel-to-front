@@ -75,7 +75,7 @@ class Trips extends Component {
                                                     <div className="trip-dates">
                                                         <span className="driver-name">{trip.driver.name}</span> is leaving on {this.getDate(trip.departure_time)}
                                                         </div>
-                                                    <Link to={"/trip/"+trip.id} className="trip-cities">{trip.from} - {trip.to}</Link>
+                                                    <Link to={"/trip/"+trip.id} className="trip-cities" data-cy={`trip-${trip.id}`} >{trip.from} - {trip.to} </Link>
                                                 </div>
                                             </div>
                                         )
