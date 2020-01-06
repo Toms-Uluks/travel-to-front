@@ -16,12 +16,14 @@ class ActivateUser extends Component {
         var config = {
             headers: {'Authorization': "Bearer " + this.props.match.params.userToken}
           };
-          Axios.get("https://travel-to-api.herokuapp.com/api/user", config).then(res => {
-              console.log(res)
+          Axios.put("https://travel-to-api.herokuapp.com/api/auth/verify",{},config).then(res => {
             if(res.data.status === 'success') {
+                const {data} = res.data;
+                const linkText = data.role === 'driver' ? 'Create your first trip' : 'Start searching for trips';
                 this.setState({
-                    message: res.data.data.name + ', your account has been activated',
-                    success: true
+                    message: data.name + ', your account has been activated',
+                    success: true,
+                    linkText
                 })
             } else {
                 this.setState({
@@ -29,14 +31,20 @@ class ActivateUser extends Component {
                     success: false
                 })
             }
-          })
+          }).catch(err => {
+               this.setState({
+                    message: 'Something went wrong, please try again later or send an email to hellotravelto@gmail.com!',
+                    success: false
+                })
+          });
     
     }
     render() { 
         return (  
             <div>
                 <div className="auth-message-block">{this.state.message}</div>
-                {this.state.success ? <Link to="/">Start your journey</Link> : null }
+                {this.state.success ? <Link to="/">{this.state.linkText}</Link> : <Link to="/">Back to start</Link> }
+
             </div>
         );
     }
