@@ -8,6 +8,8 @@ import Button from 'react-bootstrap/Button';
 import Triprequest from '../Common/Triprequest';
 import Topbar from '../Common/Topbar';
 import { Cancelwindow } from '../Common/Cancelwindow';
+import { Animated } from 'react-animated-css';
+import EditTrip from './EditTrip';
 
 const mapStateToProps = (state) => {
     return state.user
@@ -18,6 +20,7 @@ class Singletrip extends Component {
         this.state = {
             openTripRequestWindow : false, 
             openCancelWindow: false,
+            openEdit: false,
             trip: {
                 driver: {
                     name: "",
@@ -26,6 +29,7 @@ class Singletrip extends Component {
         }
         this.manageTripRequest = this.manageTripRequest.bind(this)
         this.manageCancel = this.manageCancel.bind(this)
+        this.manageEdit = this.manageEdit.bind(this)
     }
     componentDidMount() {
         var config = {
@@ -53,12 +57,27 @@ class Singletrip extends Component {
             openCancelWindow: isActive
         })  
     }
+    manageEdit(isActive){
+        this.setState({
+            openEdit: isActive
+        })  
+        if(isActive == false) {
+            this.componentDidMount()
+        }
+    }
     render() { 
         return (  
             <div>
                 <Topbar user={this.props.user}></Topbar>
-                {this.state.openTripRequestWindow ? <Triprequest maxSpace={this.state.trip.number_of_passengers} tripID={this.state.trip.id} onSuccess={this.manageTripRequest} /> : null}
-                {this.state.openCancelWindow ? <Cancelwindow tripID={this.state.trip.id} onSuccess={this.manageCancel}/> : null}
+                <Animated style={{"position": "fixed", "z-index": "1"}} animateOnMount={false}  isVisible={this.state.openTripRequestWindow} animationIn="fadeIn" animationOut="fadeOut" >
+                    <Triprequest maxSpace={this.state.trip.number_of_passengers} tripID={this.state.trip.id} onSuccess={this.manageTripRequest} /> 
+                </Animated>
+                <Animated style={{"position": "fixed", "z-index": "1"}} animateOnMount={false}  isVisible={this.state.openCancelWindow} animationIn="fadeIn" animationOut="fadeOut" >
+                    <Cancelwindow tripID={this.state.trip.id} onSuccess={this.manageCancel}/> 
+                </Animated>
+                <Animated style={{"position": "fixed", "z-index": "1"}} animateOnMount={false}  isVisible={this.state.openEdit} animationIn="fadeIn" animationOut="fadeOut" >
+                    <EditTrip trip={this.state.trip} onSuccess={this.manageEdit}/> 
+                </Animated>
                 <div className="single-trip-wrap">
                     <div className="map-wrap">
 
@@ -70,14 +89,20 @@ class Singletrip extends Component {
                         <span className="trip-dates">Price per passanger: {this.state.trip.price}EUR</span>
 
                         {this.state.trip.driver_id == this.props.user.id ? 
-                            <Button onClick={() => this.manageCancel(true)} variant="primary" className="contact-button" type="submit">
-                                Cancel trip
-                            </Button> 
-                            : 
+                            <div className="flex-row flex-start-center">
+                                <Button onClick={() => this.manageEdit(true)} variant="primary" className="contact-button" type="submit">
+                                    Edit trip
+                                </Button> 
+                                <Button onClick={() => this.manageCancel(true)} variant="primary" className="contact-button" type="submit">
+                                    Cancel trip
+                                </Button> 
+                            </div>
+                        : null}
+                        {this.state.trip.driver_id !== this.props.user.id ?
                             <Button onClick={() => this.manageTripRequest(true)} variant="primary" className="contact-button" type="submit">
                                 Join {this.state.trip.driver.name} on the trip
-                            </Button>
-                        }
+                            </Button> 
+                        : null}
                     </div>
 
 

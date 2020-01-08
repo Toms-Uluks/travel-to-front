@@ -5,6 +5,7 @@ import '../../css/common.scss'
 import Cookies from 'js-cookie';
 import user from '../../Assets/img/user.png'
 import Axios from 'axios';
+import {Animated} from "react-animated-css";
 
 class Topbar extends Component {
     constructor(props) {
@@ -51,19 +52,19 @@ class Topbar extends Component {
                         <Link activeclassname='is-active' to="/Help">Help</Link>
                     </div>
                 </div>
-                {this.state.openSidebar ? (
-                    <div className="sidebar">
-                        <div>
-                            <img src={this.props.user.profile_img ? this.props.user.profile_img : user }></img>
-                            <span>{ this.props.user.name}</span>
-                        </div>
-                        <Link to="/settings">Account Settings</Link>
-                        <Link to="/terms">Terms Of Use</Link>
-                        <Link to="/trip_history">Trip History</Link>
-                        <Link to="/conversations">Conversations</Link>
-                        <a onClick={() => {this.logOut()}}>Log Out</a>
+
+                <Animated animateOnMount={false}  isVisible={this.state.openSidebar} animationIn="slideInLeft" animationOut="slideOutLeft" className="sidebar">
+                    <div>
+                        <img src={this.props.user.profile_img ? this.props.user.profile_img : user }></img>
+                        <span>{ this.props.user.name}</span>
                     </div>
-                ) : null}
+                    <Link to="/settings">Account Settings</Link>
+                    <Link to="/terms">Terms Of Use</Link>
+                    <Link to="/trip_history">Trip History</Link>
+                    <Link to="/conversations">Conversations</Link>
+                    <a onClick={() => {this.logOut()}}>Log Out</a>
+                </Animated>
+
             </React.Fragment>
         )
     }

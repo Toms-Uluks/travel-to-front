@@ -16,9 +16,9 @@ const cancelTrip = (id) => {
 export const Cancelwindow = (props) => {
     return (
         <div className="popup-wrap">
-            <div className="popup-box">
-                <div>Are you sure you want to cancel this trip?</div>
-                <div className="flex-evenly-start">
+            <div className="popup-box flex-around-center flex-column">
+                <div className="sub-headline " >Are you sure you want to cancel this trip? <br/> This can't be reversed</div>
+                <div className="flex-evenly-start button-wrap">
                     <Button onClick={() => {cancelTrip(props.tripID); props.onSuccess(false)}} variant="primary" type="submit">
                         Yes, cancel this trip
                     </Button>

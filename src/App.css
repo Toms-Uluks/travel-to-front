@@ -42,7 +42,6 @@ a {
   font-size: 18px;
   line-height: 21px;
   text-align: center;
-  color: #FFFFFF;
   color: #0F4001;
 
 }
@@ -58,10 +57,19 @@ a {
   padding: 20px;
   width: 100%;
   border-radius: 3px;
+  cursor: pointer;
 }
 
 .role-wrap .active {
   background-color: #4F7302
+}
+
+.auth-message-block {
+  border: 1px solid #282c34;
+  width: fit-content;
+  margin: 30px auto;
+  padding: 40px 90px;
+  border-radius: 3px;
 }
 
 .btn-primary {
@@ -76,7 +84,7 @@ a {
     background-color: #062601 !important;
 }
 
-.flex-column, .flex-row, .flex-center-center, .flex-start-center, .flex-end-center, .flex-center-start, .flex-center-end, .flex-evenly-start  {
+.flex-column, .flex-row, .flex-center-center, .flex-start-center, .flex-end-center, .flex-center-start, .flex-center-end, .flex-evenly-start, .flex-around-center   {
   display: flex
 }
 
@@ -116,4 +124,10 @@ a {
 .flex-evenly-start {
   justify-content: space-evenly;
   align-items: flex-start;
+}
+
+.flex-around-center {
+  justify-content: space-around;
+  align-items: center;
+
 }
