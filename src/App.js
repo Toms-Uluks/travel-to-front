@@ -63,6 +63,7 @@ const App = ({ dispatch }) => {
     return (
       <div className="App">
           <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans&display=swap" rel="stylesheet"></link>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"></link>
           <BrowserRouter>
             <Switch>
               <Route path='/login' component={AuthPage} exact/>
