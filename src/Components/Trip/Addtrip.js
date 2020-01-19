@@ -8,6 +8,7 @@ import {SingleDatePicker} from 'react-dates';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
 import {Redirect} from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const mapStateToProps = (state, ownProps) => {
     console.log(state.user)
@@ -44,7 +45,11 @@ class Addtrip extends Component {
                 }, config).then(res => {
                     if(res.data.status === 'success') {
                         this.setState({redirectStr: '/trip/'+res.data.data.id})
+                    } else if (res.data.status === 'error') {
+                        toast.error(res.data.message)
                     }
+                }).catch(err => {
+                    toast.error("Couldn't add a trip, try again!")
                 })
             }
         }

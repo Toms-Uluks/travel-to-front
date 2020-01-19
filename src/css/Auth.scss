@@ -4,7 +4,10 @@
     width: 100%;
     height: -webkit-fill-available;
     background: #ffffff;
-
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    min-height: 100%;
     .form {
         display: flex;
         flex: 1 1 50%;
@@ -33,8 +36,13 @@
         margin-top: 40px;
     }
 
-    input {
+    input, input:-internal-autofill-selected {
+        background-color: transparent !important;
+        border: none;
+        border-bottom: 2px solid #062601;
+        border-radius: 0px;
         width: 90%;
+        color: #062601 !important
     }
 
     .secondary-btn {

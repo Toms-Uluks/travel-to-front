@@ -8,6 +8,9 @@ import { connect } from 'react-redux';
 import {BrowserRouter, Route, Switch, Link, Router, Redirect} from 'react-router-dom';
 import {setUser} from '../../modules/actions';
 import { Filter } from '../Common/Filter';
+import GoogleMapReact from 'google-map-react';
+import Geocode from "react-geocode";
+import { toast } from 'react-toastify';
 
 const mapStateToProps = (state) => {
     return state.user
@@ -25,13 +28,24 @@ class Trips extends Component {
         this.state = {  
             user: null,
             trips: [ ],
-            enableFilter: false
+            enableFilter: false,
+            center: {lat: 55.6760968, lng: 12.5683372},
+            zoom: 2,
+            locationArray: [
+                {
+                    city: '',
+                    lat: 0,
+                    lng: 0
+                }
+            ]
         }
     }
     componentDidMount() {
         var config = {
             headers: {'Authorization': "Bearer " + Cookies.get('userToken')}
         };
+        Geocode.setApiKey("AIzaSyAJeBhbJk8JPhtZsZaY8RO9E230UyPXdy8")
+        Geocode.setLanguage("en")
         var details = this.props.match.params.tripDetails ? this.props.match.params.tripDetails.split('_') : ['', '','']
         Axios.get("https://travel-to-api.herokuapp.com/api/trips?from="+details[0]+"&to="+details[1]+"&date="+details[2], config).then(res => {
             if(res.data.status === 'success') {
@@ -39,7 +53,25 @@ class Trips extends Component {
                     const tripList = state.trips.push(...res.data.data)
                     return {tripList}
                 })
+                this.state.trips.map(trip => {
+                    Geocode.fromAddress(trip.from).then(
+                        response => {
+                            const { lat, lng } = response.results[0].geometry.location;
+                            if(lat && lng) {
+                                this.setState(state => {
+                                    const tripList = state.locationArray.push({city: trip.from, lat: lat, lng: lng})
+                                    return {tripList}
+                                })
+                            }
+                        },
+                        error => {
+                            console.error(error);
+                        }
+                    );
+                })
             }
+        }).catch(err => {
+            toast.error("Something went wrong!")
         })
     }
     getDate(date) {
@@ -70,7 +102,7 @@ class Trips extends Component {
                                 {
                                     this.state.trips.map(trip => {
                                         return (
-                                            <div key="trip.id" className="trip-wrap">
+                                            <div key={trip.id+'trip'} className="trip-wrap">
                                                 <div className="trip-top-wrap">
                                                     <div className="trip-dates">
                                                         <span className="driver-name">{trip.driver.name}</span> is leaving on {this.getDate(trip.departure_time)}
@@ -85,7 +117,39 @@ class Trips extends Component {
                         </div>
                     </div>
                     <div className="trips-map-wrap">
-
+                    <GoogleMapReact
+                        bootstrapURLKeys={{ key: "AIzaSyAJeBhbJk8JPhtZsZaY8RO9E230UyPXdy8" }}
+                        defaultCenter={this.state.center}
+                        defaultZoom={this.state.zoom}
+                    >
+                        {this.state.locationArray.map(loc => {
+                            return (
+                                <div 
+                                    style={{
+                                        position: 'absolute',
+                                        width: '40px',
+                                        height: '40px',
+                                        left: '-40px' / 2,
+                                        top: '-40px' / 2,
+                                        border: '5px solid #062601',
+                                        borderRadius: '40px',
+                                        backgroundColor: 'white',
+                                        textAlign: 'center',
+                                        color: '#062601',
+                                        fontSize: 16,
+                                        fontWeight: 'bold',
+                                        padding: 4
+                                    }}
+                                    className="location-dot" 
+                                    lat={loc.lat}
+                                    lng={loc.lng}
+                                    
+                                >
+                                    {this.state.locationArray.filter(x => x.city==loc.city).length}
+                                </div>
+                            )
+                        })}
+                    </GoogleMapReact>
                     </div>
                 </div>
             </div>

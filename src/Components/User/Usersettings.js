@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
 import '../../css/Settings.scss'
+import { toast } from 'react-toastify';
 const mapStateToProps = (state) => {
     return state.user
 }
@@ -32,6 +33,8 @@ class Usersettings extends Component {
             };
             Axios.put('https://travel-to-api.herokuapp.com/api/user', updatedUser, config).then((res) => {
                 console.log(res)
+            }).catch(err => {
+                toast("something went wrong!")
             });
         }
 
@@ -53,6 +56,8 @@ class Usersettings extends Component {
                         form.formGroupNewPsw.value = ""
                         form.formGroupNewPsw2.value = ""
                     }
+                }).catch(err => {
+                    toast.error("Couldn't update your profile, try again later!")
                 });
     
             }

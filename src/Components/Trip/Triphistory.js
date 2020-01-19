@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 import {BrowserRouter, Route, Switch, Link, Router, Redirect} from 'react-router-dom';
 import { DateTime } from 'luxon';
 import '../../css/Trips.scss'
+import { toast } from 'react-toastify';
 
 const mapStateToProps = (state) => {
     return state.user
@@ -29,7 +30,8 @@ class Triphistory extends Component {
                     passenger: res.data.data.passenger
                 })
             }
-            console.log(res.data.data)
+        }).catch(err => {
+            toast.error("Something went wrong!")
         })
     }
     getDate(date) {

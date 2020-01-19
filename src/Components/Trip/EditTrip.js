@@ -7,6 +7,7 @@ import Axios from 'axios';
 import Cookies from 'js-cookie';
 import { DateTime } from 'luxon';
 import moment from 'moment';
+import { toast } from 'react-toastify';
 
 class EditTrip extends Component {
     constructor(props) {
@@ -36,7 +37,12 @@ class EditTrip extends Component {
                 }, config).then(res => {
                     if(res.data.status === 'success') {
                         this.props.onSuccess(false)
+                        toast.success("Trip updated!")
+                    } else if (res.data.status === 'error') {
+                        toast.success(res.data.message)
                     }
+                }).catch(err => {
+                    toast.error("Couldn't edit your trip, try again later!")
                 })
             }
         }
@@ -80,7 +86,7 @@ class EditTrip extends Component {
                                 <Button variant="primary" type="submit">
                                     Edit Trip
                                 </Button>
-                                <Button variant="danger" onClick={() => {this.props.onSuccess(false)}} type="cancel">
+                                <Button type="cancel" variant="danger" onClick={() => {this.props.onSuccess(false)}}>
                                     Cancel
                                 </Button>
                             </div>

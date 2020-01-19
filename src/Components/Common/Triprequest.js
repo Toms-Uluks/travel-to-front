@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
 
 
 class Triprequest extends Component {
@@ -30,10 +31,13 @@ class Triprequest extends Component {
                 trip_id: this.props.tripID,
                 number_of_passengers: this.state.passengers,
                 message: form.formGroupMessage.value
-            }, config).then(res => {
+            }, config).then((res, err) => {
                 if (res.data.status = 'success') {
                     this.props.onSuccess(false)
+                    toast.success("Trip request made")
                 }
+            }).catch(err => {
+                toast.error("Something went wrong!")
             })
         }
         const CategorySelector = (evt) => {
