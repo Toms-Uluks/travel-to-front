@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 import user from '../../Assets/img/user.png'
 import Axios from 'axios';
 import {Animated} from "react-animated-css";
+import { toast } from 'react-toastify';
 
 class Topbar extends Component {
     constructor(props) {
@@ -28,8 +29,10 @@ class Topbar extends Component {
         var config = {
             headers: {'Authorization': "Bearer " + Cookies.get('userToken')}
         };
-        Axios.put('https://travel-to-api.herokuapp.com/api/users/'+this.props.user.id+'/becomeDriver', {} , config).then((res) => {
-            console.log(res)
+        Axios.put('https://travel-to-api.herokuapp.com/api/users/'+this.props.user.id+'/becomeDriver', {} , config).then((res, err) => {
+            //console.log(res)
+        }).catch(err => {
+            toast.error("something went wrong!")
         });
     }
     render() {

@@ -3,13 +3,16 @@ import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
 import '../../css/common.scss'
+import { toast } from 'react-toastify';
 
 const cancelTrip = (id) => {
     var config = {
         headers: {'Authorization': "Bearer " + Cookies.get('userToken')}
     };
-    Axios.put("https://travel-to-api.herokuapp.com/api/trips/"+id+"/cancel",{}, config).then(res => {
-        console.log(res)
+    Axios.put("https://travel-to-api.herokuapp.com/api/trips/"+id+"/cancel",{}, config).then((res, err) => {
+        //console.log(res)
+    }).catch(err => {
+        toast.error("something went wrong!")
     })
 }
 

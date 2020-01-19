@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Login from './Login';
+import Userlogin from './Login';
 import Register from './Register';
-
+import background from '../../Assets/img/landing.jpeg'
 import '../../css/Auth.scss';
 
 class AuthPage extends Component {
@@ -18,11 +18,12 @@ class AuthPage extends Component {
     }
     render() { 
         return (  
-            <div className="form-wrap">
+            <div  style={{backgroundImage: 'url(' + background + ')'}} className="form-wrap">
+
                 <div className={this.state.activeForm == 'login' ? "active-form form" : "form"}>
                     {this.state.activeForm == 'login' ? 
                     <div>
-                        <Login></Login> 
+                        <Userlogin></Userlogin> 
                         <div className="secondary-btn" onClick={() => this.changeFormState('register')} data-cy="registerLink">Register</div>
                     </div>
                     : null}

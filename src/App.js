@@ -28,12 +28,17 @@ const App = ({ dispatch }) => {
       var config = {
         headers: {'Authorization': "Bearer " + Cookies.get('userToken')}
       };
-      Axios.get("https://travel-to-api.herokuapp.com/api/user", config).then(res => {
+      Axios.get("https://travel-to-api.herokuapp.com/api/user", config).then((res, err) => {
         if(res.data.status === 'success') {
           dispatch(setUser(res.data.data))
           connection.connect(Cookies.get('userToken'));
           connection.subscribeToNotification(`notification:${res.data.data.id}`, handleMessageAdd)
+          toast()
+        } else if (res.data.status === 'error') {
+          toast(res.data.message)
         }
+      }).catch(err => {
+        toast("something went wrong!")
       })
 
     }
@@ -50,7 +55,7 @@ const App = ({ dispatch }) => {
         }
        
     };
-    
+
     
     const PrivateRoute = ({ component: Component, ...rest }) => (
       <Route {...rest} render={(props) => (
@@ -64,6 +69,8 @@ const App = ({ dispatch }) => {
       <div className="App">
           <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans&display=swap" rel="stylesheet"></link>
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"></link>
+          <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet"></link>
+          <link href="/your-path-to-fontawesome/css/brands.css" rel="stylesheet"></link>
           <BrowserRouter>
             <Switch>
               <Route path='/login' component={AuthPage} exact/>

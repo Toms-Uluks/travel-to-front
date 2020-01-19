@@ -7,6 +7,7 @@ import '../../css/Conversations.scss';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import connection from '../../Lib/socket';
+import { toast } from 'react-toastify';
 
 const mapStateToProps = (state, ownProps) => {
     return state.user
@@ -28,7 +29,7 @@ class Conversation extends Component {
         connection.connect(Cookies.get('userToken'));
         connection.subscribeToMessage(`conversation:${this.props.match.params.id}`, this.handleMessageAdd)
 
-        Axios.get("https://travel-to-api.herokuapp.com/api/conversations/"+this.props.match.params.id, config).then(res => {
+        Axios.get("https://travel-to-api.herokuapp.com/api/conversations/"+this.props.match.params.id, config).then((res, err) => {
             if(res.data.status == 'success') {
                 this.setState({
                     conversation: res.data.data
@@ -39,6 +40,8 @@ class Conversation extends Component {
         }).then(() => {
             this.scrollToBottom();
             //Axios.put("https://travel-to-api.herokuapp.com/api/conversations/")
+        }).catch(err => {
+            toast("something went wrong!")
         })
     }
 
@@ -79,6 +82,8 @@ class Conversation extends Component {
                    receiver_id: this.props.user.id == this.state.conversation.messages[0].receiver_id ? this.state.conversation.messages[0].sender_id : this.state.conversation.messages[0].receiver_id  
                }, config).then(() => {
                    form.formGroupMessage.value = ""
+               }).catch(err => {
+                   toast.error("Something went wrong!")
                })
            }
         };
@@ -123,6 +128,11 @@ class Conversation extends Component {
                         <Button variant="primary" type="submit" onClick={() => {setusuerState('reject')}}>
                             Deny passenger
                         </Button>
+                    </div> : null}
+                    {this.props.user.role == "passenger" && this.state.conversation.tripRequest && this.state.conversation.tripRequest.status == 'Pending' ? <div className="flex-center-center">
+                        <Button variant="primary" type="submit" onClick={() => {setusuerState('cancel')}}>
+                            Cancel trip request
+                        </Button>  
                     </div> : null}
                 </div>
             </div>
