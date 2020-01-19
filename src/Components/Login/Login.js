@@ -7,7 +7,7 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { setUser } from "../../modules/actions";
 import { toast } from "react-toastify";
-import FacebookProvider, { Login } from 'react-facebook-sdk';
+import SocialLogin from "./SocialLogin";
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -66,30 +66,16 @@ class Userlogin extends Component {
         })
     };
 
-    const handleResponse = event => {
-      console.log(event)
-    }
+
 
     return (
       <React.Fragment>
         {this.renderRedirect()}
         <div className="headline">Let's go for a ride!</div>
         <div className="sub-headline">But first we must get you logged in</div>
-        <div>
-            <FacebookProvider appId="470652490551031">
-              <Login
-              scope="email"
-              onResponse={handleResponse}
-              onError={this.handleError}
-              render={({ isLoading, isWorking, onClick }) => (
-                  <div>
-                      <div id="fb-root"></div>
-                      <script async defer crossOrigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v5.0&appId=470652490551031&autoLogAppEvents=1"></script>
-                      <div className="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
-                  </div>
-              )}
-              />
-          </FacebookProvider>
+        <div className="flex-row flex-center-center">
+          <SocialLogin></SocialLogin>
+            
         </div>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formGroupEmail">

@@ -5,6 +5,7 @@ import Axios from 'axios';
 import Cookies from "js-cookie";
 import { toast } from 'react-toastify';
 import FacebookProvider, { Login } from 'react-facebook-sdk';
+import SocialLogin from './SocialLogin';
 
 class Register extends Component {
     constructor(props) {
@@ -76,22 +77,8 @@ class Register extends Component {
                         <div className={!this.state.isDriver ? 'active' : ''} onClick={() => changeRole(false)} >Passenger</div>
                         <div className={this.state.isDriver ? 'active' : ''} onClick={() => changeRole(true)}>Driver</div>
                     </div>
-                    <div className="flex-row flex-center-center">
-                        <FacebookProvider appId="470652490551031">
-                            <Login
-                            scope="email"
-                            onResponse={handleResponse}
-                            onError={this.handleError}
-                            render={({ isLoading, isWorking, onClick }) => (
-                                <div>
-                                    <div id="fb-root"></div>
-                                    <script async defer crossOrigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v5.0&appId=470652490551031&autoLogAppEvents=1"></script>
-                                    <div className="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
-                                </div>
-                            )}
-                            />
-                        </FacebookProvider>
-                        <div onClick={() => socialLogin('google')}>Google</div>
+                    <div className="form-group flex-row flex-center-center">
+                        <SocialLogin></SocialLogin>
                     </div>
                     <Form.Group controlId="formGroupName">
                         <Form.Control type="text" placeholder="Name" data-cy="name"/>
