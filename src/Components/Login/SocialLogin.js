@@ -46,10 +46,10 @@ class SocialLogin extends Component {
         const handleResponseGoogle = event => {
             console.log(event)
             Axios.post("https://travel-to-api.herokuapp.com/api/authenticated/google",{
-                email: event.profile.email,
-                name: event.profile.name,
-                user_id: event.profile.id,
-                access_token: event.tokenDetail.accessToken
+                email: event.profileObj.email,
+                name: event.profileObj.name,
+                user_id: event.profileObj.googleId,
+                access_token: event.tokenObj.access_token
             }).then(res => {
                 if (res.data.status == 'success' && res.data.data.token) {
                     Cookies.set("userToken", res.data.data.token, { expires: 1 });
@@ -74,7 +74,7 @@ class SocialLogin extends Component {
                     onSuccess={handleResponseGoogle}
                     cookiePolicy={'single_host_origin'}
                 />
-                
+
                 <FacebookProvider appId="470652490551031">
                     <Login
                         scope="email"
