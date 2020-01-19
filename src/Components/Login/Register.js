@@ -24,6 +24,7 @@ class Register extends Component {
                 name: form.formGroupName.value,
                 phone_number: form.formGroupPhone.value
             }).then(res => {
+                Cookies.set("userToken", res.data.data.token, { expires: 1 });
                 if(this.state.isDriver) {
                     var config = {
                         headers: {'Authorization': "Bearer " + res.data.data.token}

@@ -33,12 +33,12 @@ const App = ({ dispatch }) => {
           dispatch(setUser(res.data.data))
           connection.connect(Cookies.get('userToken'));
           connection.subscribeToNotification(`notification:${res.data.data.id}`, handleMessageAdd)
-          toast()
+          //toast("You've got a new message")
         } else if (res.data.status === 'error') {
-          toast(res.data.message)
+          toast.error(res.data.message)
         }
       }).catch(err => {
-        toast("something went wrong!")
+        toast.error("something went wrong!")
       })
 
     }
