@@ -6,14 +6,24 @@ import Cookies from "js-cookie";
 import { toast } from 'react-toastify';
 import FacebookProvider, { Login } from 'react-facebook-sdk';
 import SocialLogin from './SocialLogin';
+import { Redirect } from "react-router-dom";
 
 class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {  
-            isDriver: false
+            isDriver: false,
+            loggedin: false
+
         }
     }
+
+    renderRedirect = () => {
+        if (Cookies.get("userToken") || this.state.loggedin) {
+            return <Redirect to="/" />;
+        }
+    };
+
     render() { 
         const handleSubmit = event => {
             event.preventDefault();
@@ -29,6 +39,9 @@ class Register extends Component {
                     var config = {
                         headers: {'Authorization': "Bearer " + res.data.data.token}
                     };
+                    if(res.data.status == "success") {
+                        toast.success("Account created")
+                    }
                     Axios.get("https://travel-to-api.herokuapp.com/api/user", config).then(x => {
                     if(x.data.status === 'success') {
                         Axios.put('https://travel-to-api.herokuapp.com/api/users/'+x.data.data+'/becomeDriver', {} , config).then(() => {
@@ -36,6 +49,10 @@ class Register extends Component {
                             toast.error("Couldn't register you as a driver. Try again from the settings")
                         });
                     }
+                    }).then(() => {
+                        this.setState({
+                            logn: (this.state.loggedin = true)
+                        });
                     }).catch(err => {
                         toast.error("Couldn't register you at the moment, try again later!")
                     })
@@ -43,11 +60,13 @@ class Register extends Component {
                 }
             })
         };
+
         const changeRole = (isDriver) => {
             this.setState({
                 isDriver: isDriver
             })
         }
+        
         const socialLogin = type => {
             var config = {
                 headers: { Authorization: "Bearer " + Cookies.get("userToken") }
@@ -65,12 +84,9 @@ class Register extends Component {
             })
         }
 
-        const handleResponse = event => {
-            console.log(event)
-        }
-
         return (  
             <React.Fragment>
+                {this.renderRedirect()}
                 <div className="headline">Let’s get you on going</div>
                 <div className="sub-headline">We’ll get you seated and on your way within 5 minutes</div>
                 <Form onSubmit={handleSubmit}>
@@ -78,7 +94,7 @@ class Register extends Component {
                         <div className={!this.state.isDriver ? 'active' : ''} onClick={() => changeRole(false)} >Passenger</div>
                         <div className={this.state.isDriver ? 'active' : ''} onClick={() => changeRole(true)}>Driver</div>
                     </div>
-                    <div className="form-group flex-row flex-center-center">
+                    <div className="form-group flex-column flex-center-center">
                         <SocialLogin></SocialLogin>
                     </div>
                     <Form.Group controlId="formGroupName">

@@ -73,7 +73,7 @@ class Userlogin extends Component {
         {this.renderRedirect()}
         <div className="headline">Let's go for a ride!</div>
         <div className="sub-headline">But first we must get you logged in</div>
-        <div className="flex-row flex-center-center">
+        <div className="flex-column flex-center-center">
           <SocialLogin></SocialLogin>
             
         </div>
