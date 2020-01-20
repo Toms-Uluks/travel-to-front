@@ -6,7 +6,6 @@ import {SingleDatePicker} from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import '../css/Landing.scss';
-import Axios from 'axios';
 import {Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { DateTime } from 'luxon';

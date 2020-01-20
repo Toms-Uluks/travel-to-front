@@ -2,7 +2,7 @@
 describe("Trip tests", () => {
   let passengerUser;
   before(() => {
-    Cypress.config("baseUrl", "https://travel-to.herokuapp.com/");
+    Cypress.config("baseUrl", "http://127.0.0.1:3000");
     passengerUser = {
       email: "passenger@travel-to.com",
       password: "passenger"

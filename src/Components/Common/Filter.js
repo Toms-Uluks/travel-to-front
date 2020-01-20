@@ -1,9 +1,5 @@
-import React, { Component } from 'react';
+import React from "react";
 
-export const Filter = (props) => {
-    return (
-        <div>
-            TEST
-        </div>
-    )
-}
+export const Filter = props => {
+  return <div>TEST</div>;
+};

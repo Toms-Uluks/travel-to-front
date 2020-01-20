@@ -41,7 +41,7 @@ class Userlogin extends Component {
           password: form.formGroupPassword.value
         })
         .then(res => {
-          if (res.data.status == "success") {
+          if (res.data.status === "success") {
             Cookies.set("userToken", res.data.data.token, { expires: 1 });
             this.setState({
               logn: (this.state.loggedin = true)

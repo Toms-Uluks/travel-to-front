@@ -1,7 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import {BrowserRouter, Route, Switch, Link, Router, Redirect} from 'react-router-dom';
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 import AuthPage from './Components/Login/AuthPage'
@@ -22,7 +21,7 @@ import connection from './Lib/socket';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = ({ dispatch }) => {
-    
+
 
     if(Cookies.get('userToken')) {
       var config = {
@@ -42,7 +41,7 @@ const App = ({ dispatch }) => {
       })
 
     }
-    
+
     const handleMessageAdd = message => {
       const { type, data } = message;
       console.log(message)
@@ -53,17 +52,17 @@ const App = ({ dispatch }) => {
             break;
             default:
         }
-       
+
     };
 
-    
+
     const PrivateRoute = ({ component: Component, ...rest }) => (
       <Route {...rest} render={(props) => (
-        Cookies.get('userToken') 
+        Cookies.get('userToken')
           ? <Component {...props} />
           : <Redirect to='/login' />
       )} />
-      
+
     )
     return (
       <div className="App">

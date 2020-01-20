@@ -1,7 +1,13 @@
 /* eslint-disable no-undef */
 describe("Login and register tests", () => {
   before(() => {
-    Cypress.config("baseUrl", "https://travel-to.herokuapp.com/");
+    Cypress.config("baseUrl", "http://127.0.0.1:3000");
+  });
+
+  beforeEach(() => {
+    cy.on('uncaught:exception', (err) => {
+      return false;
+    });
   });
 
   it("User can login", function() {
