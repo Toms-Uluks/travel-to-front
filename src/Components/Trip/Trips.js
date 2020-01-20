@@ -5,7 +5,7 @@ import { DateTime } from 'luxon';
 import '../../css/Trips.scss';
 import Topbar from '../Common/Topbar';
 import { connect } from 'react-redux';
-import {BrowserRouter, Route, Switch, Link, Router, Redirect} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {setUser} from '../../modules/actions';
 import { Filter } from '../Common/Filter';
 import GoogleMapReact from 'google-map-react';
@@ -145,7 +145,7 @@ class Trips extends Component {
                                     lng={loc.lng}
                                     
                                 >
-                                    {this.state.locationArray.filter(x => x.city==loc.city).length}
+                                    {this.state.locationArray.filter(x => x.city === loc.city).length}
                                 </div>
                             )
                         })}

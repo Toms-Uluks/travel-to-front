@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Route, Switch, Link, Router, Redirect} from 'react-router-dom';
+import {  Link} from 'react-router-dom';
 import burger from '../../Assets/burger.png'
 import '../../css/common.scss'
 import Cookies from 'js-cookie';
@@ -51,14 +51,14 @@ class Topbar extends Component {
 
                     <div className="links-wrap">
                         <Link activeclassname='is-active' to="/" >Home</Link>
-                        {this.props.user.role == "driver" ?  <Link to="/add_trip">Add a ride</Link> : <a onClick={() => {this.becomeADriver()}}>Become a driver</a>}
+                        {this.props.user.role === "driver" ?  <Link to="/add_trip">Add a ride</Link> : <a onClick={() => {this.becomeADriver()}}>Become a driver</a>}
                         <Link activeclassname='is-active' to="/Help">Help</Link>
                     </div>
                 </div>
 
                 <Animated animateOnMount={false}  isVisible={this.state.openSidebar} animationIn="slideInLeft" animationOut="slideOutLeft" className="sidebar">
                     <div>
-                        <img src={this.props.user.profile_img ? this.props.user.profile_img : user }></img>
+                        <img src={this.props.user.profile_img ? this.props.user.profile_img : user } alt="profile image"></img>
                         <span>{ this.props.user.name}</span>
                     </div>
                     <Link to="/settings">Account Settings</Link>

@@ -32,7 +32,7 @@ class Triprequest extends Component {
                 number_of_passengers: this.state.passengers,
                 message: form.formGroupMessage.value
             }, config).then((res, err) => {
-                if (res.data.status = 'success') {
+                if (res.data.status === 'success') {
                     this.props.onSuccess(false)
                     toast.success("Trip request made")
                 }

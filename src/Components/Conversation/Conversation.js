@@ -30,7 +30,7 @@ class Conversation extends Component {
         connection.subscribeToMessage(`conversation:${this.props.match.params.id}`, this.handleMessageAdd)
 
         Axios.get("https://travel-to-api.herokuapp.com/api/conversations/"+this.props.match.params.id, config).then((res, err) => {
-            if(res.data.status == 'success') {
+            if(res.data.status === 'success') {
                 this.setState({
                     conversation: res.data.data
                 })
@@ -79,7 +79,7 @@ class Conversation extends Component {
            if(form.formGroupMessage.value) {
                Axios.post('https://travel-to-api.herokuapp.com/api/conversations/'+ this.state.conversation.id +'/message', {
                    message: form.formGroupMessage.value,
-                   receiver_id: this.props.user.id == this.state.conversation.messages[0].receiver_id ? this.state.conversation.messages[0].sender_id : this.state.conversation.messages[0].receiver_id  
+                   receiver_id: this.props.user.id === this.state.conversation.messages[0].receiver_id ? this.state.conversation.messages[0].sender_id : this.state.conversation.messages[0].receiver_id  
                }, config).then(() => {
                    form.formGroupMessage.value = ""
                }).catch(err => {
@@ -103,7 +103,7 @@ class Conversation extends Component {
                 <div className="message-wrap">
                     <div className="message-text-wrap">
                         {this.state.conversation.messages ? this.state.conversation.messages.map(message => {return (
-                            <div className={message.sender_id == this.props.user.id ? 'my-message message' : 'message'}>
+                            <div className={message.sender_id === this.props.user.id ? 'my-message message' : 'message'}>
                                 <p>{message.message}</p>
                             </div>
                         )}) : null}
@@ -121,7 +121,7 @@ class Conversation extends Component {
                             </Button>
                         </Form>
                     </div>
-                    {this.props.user.role == "driver" && this.state.conversation.tripRequest && this.state.conversation.tripRequest.status == 'Pending' ? <div className="flex-center-center">
+                    {this.props.user.role === "driver" && this.state.conversation.tripRequest && this.state.conversation.tripRequest.status === 'Pending' ? <div className="flex-center-center">
                         <Button variant="primary" type="submit" onClick={() => {setusuerState('accept')}}>
                             Accept passenger
                         </Button>
@@ -129,7 +129,7 @@ class Conversation extends Component {
                             Deny passenger
                         </Button>
                     </div> : null}
-                    {this.props.user.role == "passenger" && this.state.conversation.tripRequest && this.state.conversation.tripRequest.status == 'Pending' ? <div className="flex-center-center">
+                    {this.props.user.role === "passenger" && this.state.conversation.tripRequest && this.state.conversation.tripRequest.status === 'Pending' ? <div className="flex-center-center">
                         <Button variant="primary" type="submit" onClick={() => {setusuerState('cancel')}}>
                             Cancel trip request
                         </Button>  
