@@ -135,7 +135,7 @@ class Conversation extends Component {
                  "You cannot cancel a trip less that 24h before the departure time."
             );
           } else {
-            toast.error("Something went wrong!")ç
+            toast.error("Something went wrong!")
           }
           
         });
