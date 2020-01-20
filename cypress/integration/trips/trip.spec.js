@@ -2,7 +2,7 @@
 describe("Trip tests", () => {
   let passengerUser;
   before(() => {
-    Cypress.config("baseUrl", "http://127.0.0.1:3000");
+    Cypress.config("baseUrl", "https://travel-to.herokuapp.com/");
     passengerUser = {
       email: "passenger@travel-to.com",
       password: "passenger"
@@ -42,7 +42,8 @@ describe("Trip tests", () => {
     cy.searchTrip(passengerUser, "Copenhagen", "Oslo");
     cy.get("[data-cy=trip-21]").click();
     cy.url().should("contain", "trip/21");
-    cy.contains("Copenhagen-Oslo");
+    cy.wait(50);
+    cy.contains("Copenhagen - Oslo");
     cy.contains("Join");
   });
 });
