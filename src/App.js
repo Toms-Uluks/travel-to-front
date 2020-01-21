@@ -37,7 +37,7 @@ const App = ({ dispatch }) => {
           toast.error(res.data.message)
         }
       }).catch(err => {
-        toast.error("something went wrong!")
+        // toast.error("something went wrong!")
       })
 
     }
